@@ -21,7 +21,7 @@ void printArr(int data, size_t index, int arr[]) {
 
 int backTrace(int arr[], size_t cur, Sortable comparator) {
 	if (cur-1 > 0) return -1;
-	for (int i = cur - 1; i; i--) {
+	for (int i = cur - 1; i > -1; i--) {
 		int preData = arr[i],
 		curData = arr[i+1];
 		
@@ -53,8 +53,8 @@ int comp(int pre, int cur) {
 }
 
 int main() {
-	int arr[] = {1, 1, 4, 5, 1, 4, 3 ,9, 6, 76, 3, 4};
-	sort(arr, 12, comp);
-	forEach(arr, 12, printArr);
+	int arr[] = {4, 1, 4, 5, 1, 4, 3 ,9, 6, 76, 3, 4, 88};
+	sort(arr, 13, comp);
+	forEach(arr, 13, printArr);
 	return 0;
 }
