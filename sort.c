@@ -1,16 +1,9 @@
 typedef int (*Comparator)(int pre, int cur);
-typedef void (*ForeachCallback)(int data, size_t index, int arr[]);
 
 void swap(int* a, int* b) {
 	int c = *a;
 	*a = *b;
 	*b = c;
-}
-
-void forEach(int arr[], size_t len, ForeachCallback callback) {
-	for(int i = 0; i < len; i++) {
-		callback(arr[i], i, arr);
-	}
 }
 
 void backTrace(int arr[], size_t cur, Comparator comparator) {
