@@ -19,17 +19,14 @@ void printArr(int data, size_t index, int arr[]) {
 	printf("%d\n", data);
 }
 
-int backTrace(int arr[], size_t cur, Sortable comparator) {
-	if (cur-1 > 0) return -1;
+void backTrace(int arr[], size_t cur, Sortable comparator) {
 	for (int i = cur - 1; i > -1; i--) {
 		int preData = arr[i],
 		curData = arr[i+1];
 		
 		if (comparator(preData, curData) < 0)
 			swap(&arr[i], &arr[i+1]);
-		return i;
 	}
-	return 0;
 }
 
 void sort(int arr[], size_t len, Sortable comparator) {
@@ -41,10 +38,7 @@ void sort(int arr[], size_t len, Sortable comparator) {
 		if (comparator(preData, curData) >= 0) continue;
 		
 		swap(&arr[cur], &arr[cur+1]);
-		int _cur = backTrace(arr, cur, comparator);
-		if (!(~_cur)) {
-			cur = _cur;
-		}
+        	backTrace(arr, cur, comparator);
 	}
 }
 
