@@ -1,6 +1,4 @@
-#include <stdio.h>
-
-typedef int (*Sortable)(int pre, int cur);
+typedef int (*Comparator)(int pre, int cur);
 typedef void (*ForeachCallback)(int data, size_t index, int arr[]);
 
 void swap(int* a, int* b) {
@@ -15,11 +13,7 @@ void forEach(int arr[], size_t len, ForeachCallback callback) {
 	}
 }
 
-void printArr(int data, size_t index, int arr[]) {
-	printf("%d\n", data);
-}
-
-void backTrace(int arr[], size_t cur, Sortable comparator) {
+void backTrace(int arr[], size_t cur, Comparator comparator) {
 	for (int i = cur - 1; i > -1; i--) {
 		int preData = arr[i],
 		curData = arr[i+1];
@@ -29,26 +23,14 @@ void backTrace(int arr[], size_t cur, Sortable comparator) {
 	}
 }
 
-void sort(int arr[], size_t len, Sortable comparator) {
-	size_t cur = 0;
-	for (; cur < len - 1; cur++) {
+void sort(int arr[], size_t len, Comparator comparator) {
+	for (size_t cur = 0; cur < len - 1; cur++) {
 		int preData = arr[cur],
 		curData = arr[cur+1];
 		
 		if (comparator(preData, curData) >= 0) continue;
 		
 		swap(&arr[cur], &arr[cur+1]);
-        	backTrace(arr, cur, comparator);
+        backTrace(arr, cur, comparator);
 	}
-}
-
-int comp(int pre, int cur) {
-	return pre - cur;
-}
-
-int main() {
-	int arr[] = {4, 1, 4, 5, 1, 4, 3 ,9, 6, 76, 3, 4, 88};
-	sort(arr, 13, comp);
-	forEach(arr, 13, printArr);
-	return 0;
 }
