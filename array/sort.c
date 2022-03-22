@@ -1,9 +1,15 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
 typedef int (*Comparator)(int pre, int cur);
 
-void swap(int* a, int* b) {
-	int c = *a;
-	*a = *b;
-	*b = c;
+void swap(void* ap, void* bp, size_t size) {
+    void *mem = malloc(size);
+    memcpy(mem, ap, size);
+    memcpy(ap, bp, size);
+    memcpy(bp, mem, size);
+    free(mem);
 }
 
 void backTrace(int arr[], size_t cur, Comparator comparator) {
@@ -12,7 +18,7 @@ void backTrace(int arr[], size_t cur, Comparator comparator) {
 		curData = arr[i+1];
 		
 		if (comparator(preData, curData) < 0)
-			swap(&arr[i], &arr[i+1]);
+			swap(&arr[i], &arr[i+1], sizeof(int));
 	}
 }
 
@@ -23,7 +29,7 @@ void sort(int arr[], size_t len, Comparator comparator) {
 		
 		if (comparator(preData, curData) >= 0) continue;
 		
-		swap(&arr[cur], &arr[cur+1]);
-    backTrace(arr, cur, comparator);
+		swap(&arr[cur], &arr[cur+1], sizeof(int));
+        backTrace(arr, cur, comparator);
 	}
 }
