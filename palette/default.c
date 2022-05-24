@@ -38,15 +38,17 @@ void buildStyle(Palette p, char* str) {
          color2[30] = {0};
 
     if (fore < 0) {
-        decodeRgb(fore, color1);
-        sprintf(color1, ";38%s", color1);
+        char buf[30] = {0};
+        decodeRgb(fore, buf);
+        sprintf(color1, ";38%s", buf);
     } else {
         sprintf(color1, ";38;5;%d", fore);
     }
 
     if (back < 0) {
-        decodeRgb(back, color2);
-        sprintf(color2, ";48%s", color1);
+        char buf[30] = {0};
+        decodeRgb(back, buf);
+        sprintf(color2, ";48%s", buf);
     } else {
         sprintf(color2, ";48;5;%d", back);
     }
