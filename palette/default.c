@@ -15,7 +15,6 @@ int es_rgb(int r, int g, int b) {
     res = res | (b & 0xFF)
               | ((g & 0xFF) << 8)
               | ((r & 0xFF) << 16);
-    printf("%d %x\n", 0xff, res);
     return res;
 }
 
