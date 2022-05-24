@@ -1,4 +1,3 @@
-
 #ifdef _WIN32
     #include "win.c"
     Palette_Constructor createPalette = win_createPalette;
@@ -12,13 +11,3 @@
     Rgb rgb = es_rgb;
     SetColor setColor = es_setColor;
 #endif
-
-
-int main() {
-    Palette p = createPalette(1);
-
-    setColor(p, rgb(100, 0, 50), white);
-
-    showMessage("Hello World", p);
-    return 0;
-}
