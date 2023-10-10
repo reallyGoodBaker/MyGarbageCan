@@ -57,9 +57,7 @@ void buildStyle(Palette p, char* str) {
 
 void es_showMessage(char *msg, Palette p) {
     char style[50] = {0};
-
     buildStyle(p, style);
-
     printf("%s%s%s", style, msg, Reset);
 }
 
