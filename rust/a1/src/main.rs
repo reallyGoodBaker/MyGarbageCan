@@ -5,16 +5,16 @@ fn min_max(nums: &Vec<i32>) -> (i32, i32, u16) {
     let mut max = nums[0];
     let mut swap_times = 0u16;
 
-    for num in nums {
+    for num in &nums[1..] {
         if *num < min {
-            swap_times += 1;
             min = *num
         }
 
         if *num > max {
-            swap_times += 1;
             max = *num
         }
+
+        swap_times += 2
     }
 
     (min, max, swap_times)
@@ -32,7 +32,7 @@ fn calc_once() -> u16 {
     let result = min_max(&nums);
 
     println!(
-        "nums: {:?}\nmin and max: {:?}\nswap times: {}\n",
+        "nums: {:?}\nmin and max: {:?}\ncompare times: {}\n",
         nums,
         (result.0, result.1),
         result.2
